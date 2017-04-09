@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+	<p>
+	  <strong>Nombre:</strong>
+	  <%= @user.nombre %>
+	</p>
+
+	<p>
+	  <strong>Genero:</strong>
+	  <%= @user.genero %>
+	</p>
+
+	<p>
+	  <strong>Nacimiento:</strong>
+	  <%= @user.nacimiento %>
+	</p>
+
+	<p>
+	  <strong>Username:</strong>
+	  <%= @user.username %>
+	</p>
+
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+	<%= link_to 'Back', users_path %>
+
+	<table>
+		<thead>
+		<tr>
+		  <th>Nombre</th>
+		  <th>Descripcion</th>
+		</tr>
+		</thead>
+		<tbody>
+			<% @user.comments.each do |comment| %>
+			<tr>
+			  <td><%= comment.nombre%></td>
+			  <td><%= comment.descripcion %></td>
+
+			   <td>  <%= link_to 'eliminar', [comment.user, comment],
+			         method: :delete,
+			         data: { confirm: 'Su comentario se eliminara' } %> </td> 
+			   
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+
+	<%= render 'comments/form' %>
